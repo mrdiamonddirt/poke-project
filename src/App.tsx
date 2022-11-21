@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [PokeData, setPokeData] = useState({} as IPokemonAPIResponse)
   const [loading, setLoading] = useState(true)
-  const [PokemonNo, setPokemonNo] = useState('1')
+  const [PokemonNo, setPokemonNo] = useState(1)
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${PokemonNo}`)
@@ -29,20 +29,23 @@ function App() {
     return <div>Loading...</div>
   }
 
- const { name, sprites, types, abilities, } = PokeData
+  const { name, sprites, types, abilities, } = PokeData
+
   return (
     <div className="App">
       <input
           type="number"
           id="pokenum"
+          defaultValue={PokemonNo}
           value={PokemonNo}
-          // onChange={(e) => setPokemonNo(e.target.value)}
+          onChange={(e) => setPokemonNo(parseInt(e.target.value))}
         ></input>
       <input type="range"
           min="1"
           max="905"
+          defaultValue={PokemonNo}
           value={PokemonNo}
-          onChange={(e) => setPokemonNo(e.target.value)}></input>
+          onChange={(e) => setPokemonNo(parseInt(e.target.value))}></input>
       <br/>
       Name: {name}
       <br/>
