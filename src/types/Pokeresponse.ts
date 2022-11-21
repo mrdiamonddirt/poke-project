@@ -9,8 +9,6 @@ export interface IBasicType {
     url: string;
 }
 
-
-
 export interface IIndices {
     game_index: number;
     version: {
@@ -18,7 +16,6 @@ export interface IIndices {
         url: string;
     }
 }
-
  export interface IMove {
     move: IBasicType;
     version_group_details: {
@@ -27,7 +24,6 @@ export interface IIndices {
         version_group: IBasicType
     }[]
 }
-
 export interface IBasicSprites {
     back_default: string | null;
     back_female: string | null;
@@ -88,7 +84,6 @@ export interface ISprites extends IBasicSprites {
         }
     }
 }
-
 export interface IStat {
     base_stat: number;
     effort: number;
@@ -100,10 +95,8 @@ export interface IType {
     type: IBasicType
 }
 
-
-
 export interface IPokemonAPIResponse {
-    abilities: IFullAbility
+    abilities: IFullAbility[]
     base_experience: number
     forms: IBasicType
     game_indices: any[]
@@ -111,13 +104,13 @@ export interface IPokemonAPIResponse {
     held_items: any[]
     id: number
     is_default: boolean
-    location_area_encounters: string
+    location_area_encounters: IBasicType
     moves: any[]
     name: string
     order: number
     species: IBasicType;
     sprites: ISprites
-    stats: any[]
-    types: any[]
+    stats: IStat
+    types: IType[]
     weight: number
   }
