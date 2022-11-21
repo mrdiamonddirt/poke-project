@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import { IPokemonAPIResponse } from './types'
 
-
 function App() {
   const [count, setCount] = useState(0)
   const [PokeData, setPokeData] = useState({} as IPokemonAPIResponse)
@@ -21,7 +20,8 @@ function App() {
 
 
     return () => {
-    
+      setPokeData({} as IPokemonAPIResponse)
+      setLoading(true)
     }
   }, [PokemonNo])
   
