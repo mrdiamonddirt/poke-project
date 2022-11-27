@@ -25,61 +25,61 @@ export interface IIndices {
     }[]
 }
 export interface IBasicSprites {
-    back_default: string | null;
-    back_female: string | null;
-    back_shiny: string | null;
-    back_shiny_female: string | null;
-    front_default: string | null;
-    front_shiny: string | null;
-    front_male: string | null;
-    front_female: string | null;
+    back_default: string | undefined;
+    back_female: string | undefined;
+    back_shiny: string | undefined;
+    back_shiny_female: string | undefined;
+    front_default: string | undefined;
+    front_shiny: string | undefined;
+    front_male: string | undefined;
+    front_female: string | undefined;
 }
 
 export interface ISprites extends IBasicSprites {
     other: {
         dream_world: {
-            front_default: string | null;
+            front_default: string | undefined;
         }
-        "official-artwork" : IBasicSprites
+        "official-artwork" : IBasicSprites | undefined;
     }
-    home: IBasicSprites
+    home: IBasicSprites | undefined;
 
     versions: {
         "generation-i": {
-            "red-blue": IBasicSprites,
-            yellow: IBasicSprites
+            "red-blue": IBasicSprites | undefined;
+            yellow: IBasicSprites | undefined;
         },
         "generation-ii": {
-            crystal: IBasicSprites,
-            gold: IBasicSprites,
-            silver: IBasicSprites
+            crystal: IBasicSprites | undefined;
+            gold: IBasicSprites | undefined;
+            silver: IBasicSprites | undefined;
         },
         "generation-iii": {
-            emerald: IBasicSprites,
-            "firered-leafgreen": IBasicSprites,
-            "ruby-sapphire": IBasicSprites
+            emerald: IBasicSprites | undefined;
+            "firered-leafgreen": IBasicSprites | undefined;
+            "ruby-sapphire": IBasicSprites | undefined;
         },
         "generation-iv": {
-            "diamond-pearl": IBasicSprites,
-            "heartgold-soulsilver": IBasicSprites,
-            platinum: IBasicSprites
+            "diamond-pearl": IBasicSprites | undefined;
+            "heartgold-soulsilver": IBasicSprites | undefined;
+            platinum: IBasicSprites | undefined;
         },
         "generation-v": {
-            "black-white": IBasicSprites
+            "black-white": IBasicSprites | undefined;
         },
         "generation-vi": {
-            "omegaruby-alphasapphire": IBasicSprites,
-            "x-y": IBasicSprites
+            "omegaruby-alphasapphire": IBasicSprites | undefined;
+            "x-y": IBasicSprites | undefined;
         },
         "generation-vii": {
             icons: {
-                front_default: string | null;
+                front_default: string | undefined;
             }
-            "ultra-sun-ultra-moon": IBasicSprites
+            "ultra-sun-ultra-moon": IBasicSprites | undefined;
         },
         "generation-viii": {
             icons: {
-                front_default: string | null;
+                front_default: string | undefined;
             }
         }
     }

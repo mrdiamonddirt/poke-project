@@ -7,6 +7,8 @@ import { Profile } from './components/Profile'
 import { Auth0Provider } from '@auth0/auth0-react'
 import LoginBtn from './components/LoginBtn'
 import LogoutBtn from './components/LogoutBtn'
+import {ProfileComponent} from './components/ProfilePic'
+
 
 function App() {
   const [PokeData, setPokeData] = useState({} as IPokemonAPIResponse)
@@ -46,6 +48,8 @@ function App() {
     redirectUri={window.location.origin}
   >
     <LoginBtn />
+    <LogoutBtn />
+    <ProfileComponent />
     <Form pokemonNumber={PokemonNo} setPokemonNumber={setPokemonNo} />
     <div className="App" style={{
       width: '100vw',
