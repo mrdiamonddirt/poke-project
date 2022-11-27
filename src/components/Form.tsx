@@ -8,10 +8,10 @@ export const Form = (props: FormProps) => {
 
     return (
         <form style={{
+            display: 'block',
             position: 'fixed',
-            top:0,
+            top: 0,
             width: '100vw',
-            display: 'block'
         }}>
             <input
                 type="number"

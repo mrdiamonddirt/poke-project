@@ -16,7 +16,7 @@ export interface IIndices {
         url: string;
     }
 }
- export interface IMove {
+export interface IMove {
     move: IBasicType;
     version_group_details: {
         level_learned_at: number;
@@ -25,61 +25,63 @@ export interface IIndices {
     }[]
 }
 export interface IBasicSprites {
-    back_default: string | undefined;
-    back_female: string | undefined;
-    back_shiny: string | undefined;
-    back_shiny_female: string | undefined;
-    front_default: string | undefined;
-    front_shiny: string | undefined;
-    front_male: string | undefined;
-    front_female: string | undefined;
+    back_default: TSprite;
+    back_female: TSprite;
+    back_shiny: TSprite;
+    back_shiny_female: TSprite;
+    front_default: TSprite;
+    front_shiny: TSprite;
+    front_male: TSprite;
+    front_female: TSprite;
 }
+
+export type TSprite = string | undefined;
 
 export interface ISprites extends IBasicSprites {
     other: {
         dream_world: {
-            front_default: string | undefined;
+            front_default: TSprite;
         }
-        "official-artwork" : IBasicSprites | undefined;
+        "official-artwork" : IBasicSprites;
     }
-    home: IBasicSprites | undefined;
+    home: TSprite;
 
     versions: {
         "generation-i": {
-            "red-blue": IBasicSprites | undefined;
-            yellow: IBasicSprites | undefined;
+            "red-blue": TSprite;
+            yellow: TSprite;
         },
         "generation-ii": {
-            crystal: IBasicSprites | undefined;
-            gold: IBasicSprites | undefined;
-            silver: IBasicSprites | undefined;
+            crystal: TSprite;
+            gold: TSprite;
+            silver: TSprite;
         },
         "generation-iii": {
-            emerald: IBasicSprites | undefined;
-            "firered-leafgreen": IBasicSprites | undefined;
-            "ruby-sapphire": IBasicSprites | undefined;
+            emerald: TSprite;
+            "firered-leafgreen": TSprite;
+            "ruby-sapphire": TSprite;
         },
         "generation-iv": {
-            "diamond-pearl": IBasicSprites | undefined;
-            "heartgold-soulsilver": IBasicSprites | undefined;
-            platinum: IBasicSprites | undefined;
+            "diamond-pearl": TSprite;
+            "heartgold-soulsilver": TSprite;
+            platinum: TSprite;
         },
         "generation-v": {
-            "black-white": IBasicSprites | undefined;
+            "black-white": TSprite;
         },
         "generation-vi": {
-            "omegaruby-alphasapphire": IBasicSprites | undefined;
-            "x-y": IBasicSprites | undefined;
+            "omegaruby-alphasapphire": TSprite;
+            "x-y": TSprite;
         },
         "generation-vii": {
             icons: {
-                front_default: string | undefined;
+                front_default: TSprite;
             }
-            "ultra-sun-ultra-moon": IBasicSprites | undefined;
+            "ultra-sun-ultra-moon": TSprite;
         },
         "generation-viii": {
             icons: {
-                front_default: string | undefined;
+                front_default: TSprite;
             }
         }
     }
@@ -95,7 +97,10 @@ export interface IType {
     type: IBasicType
 }
 
-export interface IPokemonAPIResponse {
+export type TPokemonAPIResponse =  IPendingResponse | ISuccessfulResponse;
+
+export type IPendingResponse = undefined;
+export interface ISuccessfulResponse {
     abilities: IFullAbility[]
     base_experience: number
     forms: IBasicType

@@ -1,63 +1,60 @@
-import { useState, useEffect, version } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, useMemo, useEffect, version } from 'react'
 import './App.css'
-import { IPokemonAPIResponse } from './types'
-import { Form } from './components/Form'
-import { Profile } from './components/Profile'
+import { TPokemonAPIResponse } from './types'
+import {
+  Form,
+  LoginButton,
+  LogoutButton,
+  Profile,
+  ProfileComponent,
+} from './components'
 import { Auth0Provider } from '@auth0/auth0-react'
-import LoginBtn from './components/LoginBtn'
-import LogoutBtn from './components/LogoutBtn'
-import {ProfileComponent} from './components/ProfilePic'
 
-
-function App() {
-  const [PokeData, setPokeData] = useState({} as IPokemonAPIResponse)
-  const [loading, setLoading] = useState(true)
-  const [PokemonNo, setPokemonNo] = useState(1)
+const App = () => {
+  const [pokeData, setPokeData] = useState<TPokemonAPIResponse>(undefined)
+  const [pokemonNo, setPokemonNo] = useState<number>(1)
 
   useEffect(() => {
     setTimeout(() => {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${PokemonNo}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNo}`)
       .then((response) => response.json())
       .then((data) => {
         setPokeData(data)
-        setLoading(false)
       })
     }, 500)
 
     return () => {
-      setPokeData({} as IPokemonAPIResponse)
-      setLoading(true)
+      setPokeData(undefined)
     }
-  }, [PokemonNo])
+  }, [pokemonNo])
   
-  if (loading) {
+  if (pokeData === undefined) {
     return <>
-      <Form pokemonNumber={PokemonNo} setPokemonNumber={setPokemonNo} />
+      <Form pokemonNumber={pokemonNo} setPokemonNumber={setPokemonNo} />
       <div>Loading...</div>
     </> 
   }
 
-  const { name, sprites, types, abilities, } = PokeData
+  const { name, sprites, types, abilities, } = pokeData
 
   return (
     <>
-    <Auth0Provider
-    domain="dev-ocnw45twlc43oyix.uk.auth0.com"
-    clientId="np7A7VntMxWYRYUnKDnD9jNX5SRQS4JR"
-    redirectUri={window.location.origin}
-  >
-    <LoginBtn />
-    <LogoutBtn />
-    <ProfileComponent />
-    <Form pokemonNumber={PokemonNo} setPokemonNumber={setPokemonNo} />
-    <div className="App" style={{
-      width: '100vw',
-      display: 'block'
-    }}>
-      <Profile name={name} sprites={sprites} types={types} abilities={abilities} />
-  </div>
-  </Auth0Provider>
+      <Auth0Provider
+        domain="dev-ocnw45twlc43oyix.uk.auth0.com"
+        clientId="np7A7VntMxWYRYUnKDnD9jNX5SRQS4JR"
+        redirectUri={window.location.origin}
+      >
+        <LoginButton />
+        <LogoutButton />
+        <ProfileComponent />
+        <Form pokemonNumber={pokemonNo} setPokemonNumber={setPokemonNo} />
+        <div className="App" style={{
+          width: '100vw',
+          display: 'block'
+        }}>
+          <Profile name={name} sprites={sprites} types={types} abilities={abilities} />
+        </div>
+      </Auth0Provider>
     </>
 
   )
